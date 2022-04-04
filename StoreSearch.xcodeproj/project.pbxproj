@@ -14,6 +14,9 @@
 		A9492B1A27F7E95B009FDCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9492B1927F7E95B009FDCA1 /* Assets.xcassets */; };
 		A9492B1D27F7E95B009FDCA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9492B1B27F7E95B009FDCA1 /* LaunchScreen.storyboard */; };
 		A9492B2A27F7FA69009FDCA1 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B2927F7FA69009FDCA1 /* SearchResult.swift */; };
+		A9492B2C27FA7E8B009FDCA1 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B2B27FA7E8B009FDCA1 /* SearchResultCell.xib */; };
+		A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B2D27FA84BE009FDCA1 /* SearchResultCell.swift */; };
+		A9492B3027FA87D4009FDCA1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		A9492B1C27F7E95B009FDCA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9492B1E27F7E95B009FDCA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9492B2927F7FA69009FDCA1 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		A9492B2B27FA7E8B009FDCA1 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		A9492B2D27FA84BE009FDCA1 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +76,9 @@
 		A9492B2427F7EA22009FDCA1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				A9492B2727F7EA61009FDCA1 /* Resources */,
 				A9492B1027F7E957009FDCA1 /* AppDelegate.swift */,
 				A9492B1227F7E957009FDCA1 /* SceneDelegate.swift */,
+				A9492B2727F7EA61009FDCA1 /* Resources */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -80,7 +86,8 @@
 		A9492B2527F7EA2E009FDCA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A9492B1427F7E957009FDCA1 /* SearchViewController.swift */,
+				A9492B3427FA897B009FDCA1 /* ViewControllers */,
+				A9492B3227FA8967009FDCA1 /* Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -90,6 +97,7 @@
 			children = (
 				A9492B1627F7E957009FDCA1 /* Main.storyboard */,
 				A9492B1B27F7E95B009FDCA1 /* LaunchScreen.storyboard */,
+				A9492B3127FA8858009FDCA1 /* Cells */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -108,6 +116,39 @@
 				A9492B2927F7FA69009FDCA1 /* SearchResult.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A9492B3127FA8858009FDCA1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B2B27FA7E8B009FDCA1 /* SearchResultCell.xib */,
+				A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A9492B3227FA8967009FDCA1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B3327FA896E009FDCA1 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9492B3327FA896E009FDCA1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B2D27FA84BE009FDCA1 /* SearchResultCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A9492B3427FA897B009FDCA1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B1427F7E957009FDCA1 /* SearchViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +211,8 @@
 			files = (
 				A9492B1D27F7E95B009FDCA1 /* LaunchScreen.storyboard in Resources */,
 				A9492B1A27F7E95B009FDCA1 /* Assets.xcassets in Resources */,
+				A9492B2C27FA7E8B009FDCA1 /* SearchResultCell.xib in Resources */,
+				A9492B3027FA87D4009FDCA1 /* NothingFoundCell.xib in Resources */,
 				A9492B1827F7E957009FDCA1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +228,7 @@
 				A9492B1127F7E957009FDCA1 /* AppDelegate.swift in Sources */,
 				A9492B2A27F7FA69009FDCA1 /* SearchResult.swift in Sources */,
 				A9492B1327F7E957009FDCA1 /* SceneDelegate.swift in Sources */,
+				A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
