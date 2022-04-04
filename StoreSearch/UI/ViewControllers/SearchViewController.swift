@@ -36,6 +36,8 @@ class SearchViewController: UIViewController {
         
         let nothingFoundCellNib = UINib(nibName: Constants.nothingFoundCellId, bundle: nil)
         tableView.register(nothingFoundCellNib, forCellReuseIdentifier: Constants.nothingFoundCellId)
+        
+        searchBar.becomeFirstResponder()
     }
 
 
@@ -82,8 +84,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cell = tableView.dequeueReusableCell(withIdentifier: Constants.searchResultCellId, for: indexPath) as! SearchResultCell
-
         if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier: Constants.nothingFoundCellId, for: indexPath)
         } else {
@@ -95,8 +95,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         }
-        
-        // return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
