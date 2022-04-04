@@ -48,19 +48,27 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         
-        if searchBar.text! != "Justin Bieber" {
-            for i in 0...2 {
-                let searchResult = SearchResult()
-                searchResult.name = String(format: "Fake Result %d for ", i)
-                searchResult.artistName = searchBar.text ?? ""
-                searchResults.append(searchResult)
-            }
-        }
+        if
+            let searchBarText = searchBar.text,
+            !searchBarText.isEmpty
+        {
+            searchBar.resignFirstResponder()
 
-        hasSearched = true
-        tableView.reloadData()
+            hasSearched = true
+            searchResults = []
+            
+            guard let url = iTunesURL(searchText: searchBarText) else { return }
+            print("URL: \(url)")
+            
+            if let data = performStoreRequest(with: url) {
+                searchResults = parse(data: data)
+                
+                searchResults.sort { $0 < $1 }
+            }
+            
+            tableView.reloadData()
+        }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -91,7 +99,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
-            cell.artistNameLabel.text = searchResult.artistName
+            
+            if searchResult.artist.isEmpty {
+                cell.artistNameLabel.text = "Unknown"
+            } else {
+                cell.artistNameLabel.text = "\(searchResult.artist) (\(searchResult.type))"
+            }
             
             return cell
         }
@@ -103,6 +116,66 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return searchResults.count == 0 ? nil : indexPath
+    }
+}
+
+// MARK: - Helper Methods
+
+extension SearchViewController {
+    
+    func iTunesURL(searchText: String) -> URL? {
+        guard
+            let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        else { return nil }
+        
+        let urlString = "https://itunes.apple.com/search?term=\(encodedText)"
+        let url = URL(string: urlString)
+        
+        return url
+    }
+    
+    func performStoreRequest(with url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            showNetworkErrorAlert()
+            return nil
+        }
+    }
+    
+    func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            
+            return result.results
+        } catch {
+            print("JSON Error: \(error)")
+            return []
+        }
+    }
+}
+
+// MARK: - Alerts
+
+extension SearchViewController {
+    
+    func showNetworkErrorAlert() {
+        let alert = UIAlertController(
+            title: "Oops...",
+            message: "There was an error accessing the iTunes Store." + " Please try again.",
+            preferredStyle: .alert
+        )
+        
+        let action = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        )
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 }
 
