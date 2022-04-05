@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     struct Constants {
         static let searchResultCellId = "SearchResultCell"
         static let nothingFoundCellId = "NothingFoundCell"
+        static let loadingCellId      = "LoadingCell"
     }
     
     // MARK: Properties
@@ -23,6 +24,7 @@ class SearchViewController: UIViewController {
     
     var searchResults = [SearchResult]()
     var hasSearched = false
+    var isLoading = false
     
     // MARK: - Lifecycle
 
@@ -36,6 +38,9 @@ class SearchViewController: UIViewController {
         
         let nothingFoundCellNib = UINib(nibName: Constants.nothingFoundCellId, bundle: nil)
         tableView.register(nothingFoundCellNib, forCellReuseIdentifier: Constants.nothingFoundCellId)
+        
+        let loadingCellNib = UINib(nibName: Constants.loadingCellId, bundle: nil)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: Constants.loadingCellId)
         
         searchBar.becomeFirstResponder()
     }
@@ -54,20 +59,31 @@ extension SearchViewController: UISearchBarDelegate {
             !searchBarText.isEmpty
         {
             searchBar.resignFirstResponder()
+            
+            isLoading = true
+            tableView.reloadData()
 
             hasSearched = true
             searchResults = []
             
+            let queue = DispatchQueue.global()
             guard let url = iTunesURL(searchText: searchBarText) else { return }
-            print("URL: \(url)")
             
-            if let data = performStoreRequest(with: url) {
-                searchResults = parse(data: data)
+            queue.async { // [weak self] in // does weak self actually need to be here??
+                // guard let strongSelf = self else { return }
                 
-                searchResults.sort { $0 < $1 }
+                if let data = self.performStoreRequest(with: url) {
+                    self.searchResults = self.parse(data: data)
+                    self.searchResults.sort { $0 < $1 }
+                    
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+
+                    return
+                }
             }
-            
-            tableView.reloadData()
         }
     }
     
@@ -82,7 +98,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if !hasSearched {
+        if isLoading {
+            return 1
+        } else if !hasSearched {
             return 0
         } else if searchResults.count == 0 {
             return 1
@@ -92,6 +110,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.loadingCellId, for: indexPath)
+
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            
+            return cell
+        }
+        
         if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier: Constants.nothingFoundCellId, for: indexPath)
         } else {
@@ -115,7 +142,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return searchResults.count == 0 ? nil : indexPath
+        return (searchResults.count == 0 || isLoading) ? nil : indexPath
     }
 }
 
