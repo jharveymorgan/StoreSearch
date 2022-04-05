@@ -23,6 +23,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var searchResults = [SearchResult]()
+    var dataTask: URLSessionDataTask?
     var hasSearched = false
     var isLoading = false
     
@@ -60,19 +61,20 @@ extension SearchViewController: UISearchBarDelegate {
         {
             searchBar.resignFirstResponder()
             
+            dataTask?.cancel()
+            
             isLoading = true
             tableView.reloadData()
 
             hasSearched = true
             searchResults = []
-            
-            // let queue = DispatchQueue.global()
+
             guard let url = iTunesURL(searchText: searchBarText) else { return }
             let session = URLSession.shared
             
-            let dataTask = session.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print("Failure! \(error.localizedDescription)")
+            dataTask = session.dataTask(with: url) { data, response, error in // should ther be [weak self] here ???
+                if let error = error as NSError?, error.code == -999 {
+                    return // because search was cancelled
                 } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     if let data = data {
                         self.searchResults = self.parse(data: data)
@@ -97,23 +99,7 @@ extension SearchViewController: UISearchBarDelegate {
                 }
             }
             
-            dataTask.resume()
-            
-            /*queue.async { // [weak self] in // does weak self actually need to be here??
-                // guard let strongSelf = self else { return }
-                
-                if let data = self.performStoreRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort { $0 < $1 }
-                    
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
-                    }
-
-                    return
-                }
-            }*/
+            dataTask?.resume()
         }
     }
     
@@ -190,16 +176,6 @@ extension SearchViewController {
         
         return url
     }
-    
-//    func performStoreRequest(with url: URL) -> Data? {
-//        do {
-//            return try Data(contentsOf: url)
-//        } catch {
-//            print("Download Error: \(error.localizedDescription)")
-//            showNetworkErrorAlert()
-//            return nil
-//        }
-//    }
     
     func parse(data: Data) -> [SearchResult] {
         do {
