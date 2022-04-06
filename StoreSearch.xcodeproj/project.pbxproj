@@ -18,6 +18,7 @@
 		A9492B3027FA87D4009FDCA1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */; };
 		A9492B3627FBD396009FDCA1 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B3527FBD396009FDCA1 /* LoadingCell.xib */; };
 		A9492B3927FD1E90009FDCA1 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */; };
+		A9492B3B27FD2590009FDCA1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3A27FD2590009FDCA1 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		A9492B3527FBD396009FDCA1 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		A9492B3A27FD2590009FDCA1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				A9492B1427F7E957009FDCA1 /* SearchViewController.swift */,
+				A9492B3A27FD2590009FDCA1 /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				A9492B2A27F7FA69009FDCA1 /* SearchResult.swift in Sources */,
 				A9492B1327F7E957009FDCA1 /* SceneDelegate.swift in Sources */,
 				A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */,
+				A9492B3B27FD2590009FDCA1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

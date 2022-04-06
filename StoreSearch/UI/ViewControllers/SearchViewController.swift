@@ -15,6 +15,8 @@ class SearchViewController: UIViewController {
         static let searchResultCellId = "SearchResultCell"
         static let nothingFoundCellId = "NothingFoundCell"
         static let loadingCellId      = "LoadingCell"
+        
+        static let showDetailSegue    = "ShowDetail"
     }
     
     // MARK: Properties
@@ -45,6 +47,18 @@ class SearchViewController: UIViewController {
         tableView.register(loadingCellNib, forCellReuseIdentifier: Constants.loadingCellId)
         
         searchBar.becomeFirstResponder()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.showDetailSegue {
+            let detailViewController = segue.destination as! DetailViewController
+            let indexPath = sender as! IndexPath
+            
+            let searchResult = searchResults[indexPath.row]
+            detailViewController.searchResult = searchResult
+        }
     }
 
 
@@ -154,6 +168,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: Constants.showDetailSegue, sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
