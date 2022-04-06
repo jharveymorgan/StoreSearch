@@ -17,6 +17,7 @@
 		A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B2D27FA84BE009FDCA1 /* SearchResultCell.swift */; };
 		A9492B3027FA87D4009FDCA1 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */; };
 		A9492B3627FBD396009FDCA1 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B3527FBD396009FDCA1 /* LoadingCell.xib */; };
+		A9492B3927FD1E90009FDCA1 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A9492B2D27FA84BE009FDCA1 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		A9492B2F27FA87D4009FDCA1 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		A9492B3527FBD396009FDCA1 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		A9492B2727F7EA61009FDCA1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A9492B3727FD1E69009FDCA1 /* Extensions */,
 				A9492B1927F7E95B009FDCA1 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -149,6 +152,14 @@
 				A9492B1427F7E957009FDCA1 /* SearchViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A9492B3727FD1E69009FDCA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 			files = (
 				A9492B1527F7E957009FDCA1 /* SearchViewController.swift in Sources */,
 				A9492B1127F7E957009FDCA1 /* AppDelegate.swift in Sources */,
+				A9492B3927FD1E90009FDCA1 /* UIImageView+DownloadImage.swift in Sources */,
 				A9492B2A27F7FA69009FDCA1 /* SearchResult.swift in Sources */,
 				A9492B1327F7E957009FDCA1 /* SceneDelegate.swift in Sources */,
 				A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */,
