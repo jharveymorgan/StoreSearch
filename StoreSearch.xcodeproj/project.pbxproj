@@ -19,6 +19,9 @@
 		A9492B3627FBD396009FDCA1 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9492B3527FBD396009FDCA1 /* LoadingCell.xib */; };
 		A9492B3927FD1E90009FDCA1 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */; };
 		A9492B3B27FD2590009FDCA1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3A27FD2590009FDCA1 /* DetailViewController.swift */; };
+		A9492B3D27FE9509009FDCA1 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3C27FE9509009FDCA1 /* GradientView.swift */; };
+		A9492B4027FE97D4009FDCA1 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B3F27FE97D4009FDCA1 /* BounceAnimationController.swift */; };
+		A9492B4227FE9B22009FDCA1 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9492B4127FE9B22009FDCA1 /* SlideOutAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		A9492B3527FBD396009FDCA1 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		A9492B3A27FD2590009FDCA1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A9492B3C27FE9509009FDCA1 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A9492B3F27FE97D4009FDCA1 /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		A9492B4127FE9B22009FDCA1 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,7 @@
 		A9492B2527F7EA2E009FDCA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A9492B3E27FE97BE009FDCA1 /* Animation */,
 				A9492B3427FA897B009FDCA1 /* ViewControllers */,
 				A9492B3227FA8967009FDCA1 /* Views */,
 			);
@@ -135,6 +142,7 @@
 		A9492B3227FA8967009FDCA1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A9492B3C27FE9509009FDCA1 /* GradientView.swift */,
 				A9492B3327FA896E009FDCA1 /* Cells */,
 			);
 			path = Views;
@@ -163,6 +171,15 @@
 				A9492B3827FD1E90009FDCA1 /* UIImageView+DownloadImage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A9492B3E27FE97BE009FDCA1 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				A9492B3F27FE97D4009FDCA1 /* BounceAnimationController.swift */,
+				A9492B4127FE9B22009FDCA1 /* SlideOutAnimationController.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,9 +259,12 @@
 				A9492B1127F7E957009FDCA1 /* AppDelegate.swift in Sources */,
 				A9492B3927FD1E90009FDCA1 /* UIImageView+DownloadImage.swift in Sources */,
 				A9492B2A27F7FA69009FDCA1 /* SearchResult.swift in Sources */,
+				A9492B4027FE97D4009FDCA1 /* BounceAnimationController.swift in Sources */,
 				A9492B1327F7E957009FDCA1 /* SceneDelegate.swift in Sources */,
 				A9492B2E27FA84BE009FDCA1 /* SearchResultCell.swift in Sources */,
+				A9492B3D27FE9509009FDCA1 /* GradientView.swift in Sources */,
 				A9492B3B27FD2590009FDCA1 /* DetailViewController.swift in Sources */,
+				A9492B4227FE9B22009FDCA1 /* SlideOutAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
