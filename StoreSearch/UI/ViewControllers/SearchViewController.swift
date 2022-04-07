@@ -181,7 +181,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController {
     
     func iTunesURL(searchText: String, category: Int) -> URL? {
-        let kind: String
+        var kind: String
         switch category {
             case 1:     kind = "musicTrack"
             case 2:     kind = "software"
