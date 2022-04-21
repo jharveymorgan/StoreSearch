@@ -9,6 +9,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
     // MARK: Properties
     
     @IBOutlet weak var popUpView: UIView!
@@ -21,6 +26,7 @@ class DetailViewController: UIViewController {
     
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
+    var dismissStyle = AnimationStyle.fade
     
     // MARK: - Initialization
     
@@ -123,7 +129,8 @@ extension DetailViewController {
 
 extension DetailViewController {
     @IBAction func close() {
-        dismiss(animated: true)
+        dismissStyle = .slide
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func openInStore() {
